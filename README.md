@@ -34,7 +34,12 @@ $ oc create configmap myappconf --from-literal APP_MSG="Test Message"
 $ oc set env deploy/myapp --from=configmap/myappconf 
 $ oc create secret generic myappfilesec --from-file ~/DO288-apps/app-config/myapp.sec  
 $ oc set volume deployment/myapp --add -t secret --name=myappsec-vol --secret-name myappfilesec --mount-path=/opt/app-root/secure/  
-
+  
+### PODMAN COMMANDS:
+$ podman build -t do288-hello-java ~/DO288-apps/hello-java/ --format=docker  
+$ podman tag do288-hello-java quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java  
+$ podman login quay.io -u ${RHT_OCP4_QUAY_USER}  
+$ podman push quay.io/${RHT_OCP4_QUAY_USER}/do288-hello-java  
 
 ### VALIDATE JSON:
 $ python3 -m json.tool my.json
