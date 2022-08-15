@@ -30,7 +30,8 @@ $ oc new-app --template=oujfbp-common/php-mysql-ephemeral -p DATABASE_USER=user1
 $ oc cp ~/your_source_file your_pod:/tmp/your_dest_file  
 $ oc rsh -t your_pod  
 $ oc set env deployment/myapp APP_MSG="Test Message"   
-$ oc create configmap myappconf \ --from-literal APP_MSG="Test Message"  
+$ oc create configmap myappconf --from-literal APP_MSG="Test Message" 
+$ oc set env deploy/myapp --from=configmap/myappconf 
 $ oc create secret generic myappfilesec --from-file ~/DO288-apps/app-config/myapp.sec  
 $ oc set volume deployment/myapp --add -t secret --name=myappsec-vol --secret-name myappfilesec --mount-path=/opt/app-root/secure/  
 
@@ -46,3 +47,10 @@ $ git push -u origin source-build (push changes to remote repo + specific branch
 $ git add .  
 $ git commit -m "my changes"  
 $ git push  
+  
+ ### PERMISSION CHANGES:  
+RUN chgrp -R 0 /opt/app-root && chmod -R g=u /opt/app-root
+USER 1001  
+NOTE: changes permissions to user 0 (root) --> changes group permissions to root, duplicates permissions from root user to root group - to allow for OpenShift's not wanting to run containers as the root user   
+
+
