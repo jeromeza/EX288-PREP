@@ -21,6 +21,19 @@ $ oc start-build --follow bc/xyz (start a new build e.g. if you've made code cha
 $ oc expose --help  
 $ oc expose service xyz --hostname=xyzbuild.apps.cluster.domain.example.com  
 $ oc get route 
+$ oc create -f ~/your_template.json
+$ oc new-app --help (see template example)
+$ oc new-app --template=oujfbp-common/php-mysql-ephemeral \
+  -p NAME=quotesapi \
+  -p APPLICATION_DOMAIN=quote-${RHT_OCP4_DEV_USER}.${RHT_OCP4_WILDCARD_DOMAIN} \
+  -p SOURCE_REPOSITORY_URL=https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps \
+  -p CONTEXT_DIR=quotes \
+  -p DATABASE_SERVICE_NAME=quotesdb \
+  -p DATABASE_USER=user1 \
+  -p DATABASE_PASSWORD=mypa55 \
+  --name quotes
+$ oc cp ~/your_source_file your_pod:/tmp/your_dest_file
+$ oc rsh -t your_pod
 
 ### VALIDATE JSON:
 $ python3 -m json.tool my.json
