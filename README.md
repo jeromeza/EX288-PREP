@@ -49,7 +49,7 @@ $ git commit -m "my changes"
 $ git push  
   
  ### PERMISSION CHANGES:  
-RUN chgrp -R 0 /opt/app-root && chmod -R g=u /opt/app-root
+RUN chgrp -R 0 /opt/app-root && chmod -R g=u /opt/app-root  
 USER 1001  
 NOTE: changes permissions to user 0 (root) --> changes group permissions to root, duplicates permissions from root user to root group - to allow for OpenShift's not wanting to run containers as the root user   
 
