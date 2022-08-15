@@ -15,10 +15,13 @@ $ oc new-project your_project_here
 $ oc status  
 $ oc new-app --help  
 $ oc new-app --name xyz --build-env npm_config_registry=http://private.registry.com/nodejs http://mygit.com/xyz.git  
+$ oc new-app --name myapp --build-env npm_config_registry=http://${RHT_OCP4_NEXUS_SERVER}/repository/nodejs nodejs~https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#app-config --context-dir app-config  
+
 $ oc delete all -l app=myapp  
 $ oc logs -f bc/xyz  
 $ oc start-build --follow bc/xyz (start a new build e.g. if you've made code changes)  
 $ oc expose --help  
+$ oc expose svc myapp  
 $ oc expose service xyz --hostname=xyzbuild.apps.cluster.domain.example.com  
 $ oc get route 
 $ oc create -f ~/your_template.json  
@@ -26,6 +29,10 @@ $ oc new-app --help (see template example)
 $ oc new-app --template=oujfbp-common/php-mysql-ephemeral -p DATABASE_USER=user1 -p DATABASE_PASSWORD=mypa55 --name myapp  
 $ oc cp ~/your_source_file your_pod:/tmp/your_dest_file  
 $ oc rsh -t your_pod  
+$ oc create configmap myappconf \ --from-literal APP_MSG="Test Message"  
+$ oc create secret generic myappfilesec --from-file ~/DO288-apps/app-config/myapp.sec  
+$ oc set volume deployment/myapp --add -t secret --name=myappsec-vol --secret-name myappfilesec --mount-path=/opt/app-root/secure/  
+
 
 ### VALIDATE JSON:
 $ python3 -m json.tool my.json
