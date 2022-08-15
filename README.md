@@ -29,6 +29,7 @@ $ oc new-app --help (see template example)
 $ oc new-app --template=oujfbp-common/php-mysql-ephemeral -p DATABASE_USER=user1 -p DATABASE_PASSWORD=mypa55 --name myapp  
 $ oc cp ~/your_source_file your_pod:/tmp/your_dest_file  
 $ oc rsh -t your_pod  
+$ oc set env deployment/myapp APP_MSG="Test Message"   
 $ oc create configmap myappconf \ --from-literal APP_MSG="Test Message"  
 $ oc create secret generic myappfilesec --from-file ~/DO288-apps/app-config/myapp.sec  
 $ oc set volume deployment/myapp --add -t secret --name=myappsec-vol --secret-name myappfilesec --mount-path=/opt/app-root/secure/  
