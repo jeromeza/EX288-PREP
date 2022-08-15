@@ -15,7 +15,7 @@ $ oc new-project your_project_here
 $ oc status  
 $ oc new-app --help  
 $ oc new-app --name xyz --build-env npm_config_registry=http://private.registry.com/nodejs http://mygit.com/xyz.git  
-$ oc delete all -l app=myapp
+$ oc delete all -l app=myapp  
 $ oc logs -f bc/xyz  
 $ oc start-build --follow bc/xyz (start a new build e.g. if you've made code changes)  
 $ oc expose --help  
