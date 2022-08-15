@@ -23,7 +23,7 @@ $ oc expose service xyz --hostname=xyzbuild.apps.cluster.domain.example.com
 $ oc get route 
 $ oc create -f ~/your_template.json  
 $ oc new-app --help (see template example)  
-$ oc new-app --template=oujfbp-common/php-mysql-ephemeral -p DATABASE_USER=user1 -p DATABASE_PASSWORD=mypa55 --name myapp
+$ oc new-app --template=oujfbp-common/php-mysql-ephemeral -p DATABASE_USER=user1 -p DATABASE_PASSWORD=mypa55 --name myapp  
 $ oc cp ~/your_source_file your_pod:/tmp/your_dest_file  
 $ oc rsh -t your_pod  
 
